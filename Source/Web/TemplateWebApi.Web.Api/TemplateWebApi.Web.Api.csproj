@@ -233,6 +233,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\TemplatesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -292,6 +293,10 @@
     <ProjectReference Include="..\..\Services\TemplateWebApi.Services.Data\TemplateWebApi.Services.Data.csproj">
       <Project>{10f359d6-1828-4fa7-9e21-c19d8dd8274e}</Project>
       <Name>TemplateWebApi.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateWebApi.Web.Infrastructure\TemplateWebApi.Web.Infrastructure.csproj">
+      <Project>{b2c367f7-026b-493a-8aca-1df68b874fa9}</Project>
+      <Name>TemplateWebApi.Web.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -47,7 +47,7 @@
         public void Update(Template template)
         {
             this.templates.Update(template);
-
+            
             this.templates.SaveChanges();
         }
     }

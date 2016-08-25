@@ -2,95 +2,99 @@
 {
     using Microsoft.AspNet.Identity;
     using Services.Data.Contracts;
-    using System;
-    using System.Collections.Generic;
-    using System.Data;
-    using System.Data.Entity;
-    using System.Data.Entity.Infrastructure;
     using System.Linq;
     using System.Net;
-    using System.Net.Http;
     using System.Web.Http;
-    using System.Web.Http.Description;
-    using TemplateWebApi.Data;
-    using TemplateWebApi.Data.Models;
-
+    using Data.Models;
+    using System.Collections.Generic;
+    using Models.TemplateViewModels;
     [Authorize]
-    public class TemplatesController : ApiController
+    public class TemplatesController : BaseController
     {
         private ITemplatesService templates;
+        private IApplicationUsersService users;
 
-        public TemplatesController(ITemplatesService templatesService)
+        public TemplatesController(ITemplatesService templatesService, IApplicationUsersService usersService)
         {
             this.templates = templatesService;
+            this.users = usersService;
         }
 
         // GET: api/Templates
-        public IQueryable<Template> GetTemplates()
+        public IHttpActionResult GetTemplates()
         {
-            return this.templates.All();
+            var templates = this.templates.All().ToList();
+            var viewTemplates = this.Mapper.Map<IEnumerable<TemplateResponseViewModel>>(templates);
+
+            return this.Ok(viewTemplates);
         }
 
         // GET: api/Templates/5
-        [ResponseType(typeof(Template))]
         public IHttpActionResult GetTemplate(int id)
         {
-            Template template = this.templates.ById(id);
-            if (template == null)
+            var template = this.templates.ById(id);
+            var viewTemplate = this.Mapper.Map<TemplateResponseViewModel>(template);
+
+            if (viewTemplate == null)
             {
                 return NotFound();
             }
 
-            return Ok(template);
+            return Ok(viewTemplate);
         }
 
         // PUT: api/Templates/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutTemplate(int id, Template template)
+        public IHttpActionResult PutTemplate(int id, TemplateRequestViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != template.Id)
-            {
-                return BadRequest();
-            }
-
+            var userId = this.User.Identity.GetUserId();
+            model.UserId = userId;
+            //model.User = this.users.ById(userId);
+            var template = this.Mapper.Map<Template>(model);
             this.templates.Update(template);
+
             return StatusCode(HttpStatusCode.NoContent);
         }
 
         // POST: api/Templates
-        [ResponseType(typeof(Template))]
-        public IHttpActionResult PostTemplate(Template template)
+        public IHttpActionResult PostTemplate(TemplateRequestViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            template.UserId= this.User.Identity.GetUserId();
+            var userId = this.User.Identity.GetUserId();
+            model.UserId = userId;
 
+            var template = this.Mapper.Map<Template>(model);
             var templateId = this.templates.Add(template);
 
-            return CreatedAtRoute("DefaultApi", new { id = templateId }, template);
+            var addedTemplate = this.templates.ById(templateId);
+            addedTemplate.User = this.users.ById(userId);
+            var viewModel = this.Mapper.Map<TemplateResponseViewModel>(addedTemplate);
+
+            return CreatedAtRoute("DefaultApi", new { id = templateId }, viewModel);
         }
 
         // DELETE: api/Templates/5
-        [ResponseType(typeof(Template))]
         public IHttpActionResult DeleteTemplate(int id)
         {
-            Template template = this.templates.ById(id);
+            var template = this.templates.ById(id);
             if (template == null)
             {
                 return NotFound();
             }
 
             this.templates.Delete(template);
-            
-            return Ok(template);
+
+            var viewModel = this.Mapper.Map<TemplateResponseViewModel>(template);
+
+            return Ok(viewModel);
         }
 
         protected override void Dispose(bool disposing)
