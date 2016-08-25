@@ -1,5 +1,5 @@
 # Template-Web-Api
-Template Web API with individual user accounts, ninject, automapper set up.
+Template Web API with individual user accounts(Source) and without(Source2), ninject, automapper set up.
 
 ### Step-By-Step
 1. Blank Solution - the name of the app
