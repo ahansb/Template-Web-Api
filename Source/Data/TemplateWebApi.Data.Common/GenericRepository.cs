@@ -4,11 +4,11 @@
     using System.Linq;
     using System.Data.Entity;
     using Contracts;
-
+    using Data.Contracts;
     public class GenericRepository<T> : IGenericRepository<T>
        where T : class
     {
-        public GenericRepository(DbContext context)
+        public GenericRepository(IApplicationDbContext context)
         {
             if (context == null)
             {
@@ -21,7 +21,7 @@
 
         protected IDbSet<T> DbSet { get; set; }
 
-        private DbContext Context { get; set; }
+        private IApplicationDbContext Context { get; set; }
 
         public virtual IQueryable<T> All()
         {

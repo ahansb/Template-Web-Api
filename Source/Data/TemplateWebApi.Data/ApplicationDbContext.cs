@@ -1,9 +1,10 @@
 ﻿namespace TemplateWebApi.Data
 {
+    using Contracts;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
     using System.Data.Entity;
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
     {
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
@@ -16,7 +17,5 @@
         {
             return new ApplicationDbContext();
         }
-
-        public System.Data.Entity.DbSet<TemplateWebApi.Data.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

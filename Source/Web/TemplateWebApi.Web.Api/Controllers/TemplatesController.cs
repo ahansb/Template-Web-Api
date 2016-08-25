@@ -1,5 +1,7 @@
 ﻿namespace TemplateWebApi.Web.Api.Controllers
 {
+    using Microsoft.AspNet.Identity;
+    using Services.Data.Contracts;
     using System;
     using System.Collections.Generic;
     using System.Data;
@@ -16,19 +18,24 @@
     [Authorize]
     public class TemplatesController : ApiController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private ITemplatesService templates;
+
+        public TemplatesController(ITemplatesService templatesService)
+        {
+            this.templates = templatesService;
+        }
 
         // GET: api/Templates
         public IQueryable<Template> GetTemplates()
         {
-            return db.Templates;
+            return this.templates.All();
         }
 
         // GET: api/Templates/5
         [ResponseType(typeof(Template))]
         public IHttpActionResult GetTemplate(int id)
         {
-            Template template = db.Templates.Find(id);
+            Template template = this.templates.ById(id);
             if (template == null)
             {
                 return NotFound();
@@ -51,24 +58,7 @@
                 return BadRequest();
             }
 
-            db.Entry(template).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TemplateExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
+            this.templates.Update(template);
             return StatusCode(HttpStatusCode.NoContent);
         }
 
@@ -81,25 +71,25 @@
                 return BadRequest(ModelState);
             }
 
-            db.Templates.Add(template);
-            db.SaveChanges();
+            template.UserId= this.User.Identity.GetUserId();
 
-            return CreatedAtRoute("DefaultApi", new { id = template.Id }, template);
+            var templateId = this.templates.Add(template);
+
+            return CreatedAtRoute("DefaultApi", new { id = templateId }, template);
         }
 
         // DELETE: api/Templates/5
         [ResponseType(typeof(Template))]
         public IHttpActionResult DeleteTemplate(int id)
         {
-            Template template = db.Templates.Find(id);
+            Template template = this.templates.ById(id);
             if (template == null)
             {
                 return NotFound();
             }
 
-            db.Templates.Remove(template);
-            db.SaveChanges();
-
+            this.templates.Delete(template);
+            
             return Ok(template);
         }
 
@@ -107,14 +97,9 @@
         {
             if (disposing)
             {
-                db.Dispose();
+                this.templates.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        private bool TemplateExists(int id)
-        {
-            return db.Templates.Count(e => e.Id == id) > 0;
         }
     }
 }

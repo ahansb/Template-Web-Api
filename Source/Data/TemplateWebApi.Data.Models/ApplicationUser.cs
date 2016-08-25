@@ -9,7 +9,7 @@
     {
         private ICollection<Template> templates;
 
-        public ApplicationUser()
+        public ApplicationUser():base()
         {
             this.Templates = new HashSet<Template>();
         }
