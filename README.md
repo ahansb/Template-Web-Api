@@ -8,7 +8,8 @@ Template Web API with individual user accounts, ninject, automapper set up.
 	- for Data - where browse to add \Data
 		- the name of the app.Data
 		- the name of the app.Models
-#### Adding in Web the WebApi
+
+##### Adding in Web the WebApi
 4. Delete
 	- Scripts
 	- Views
