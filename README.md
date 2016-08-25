@@ -8,6 +8,7 @@ Template Web API with individual user accounts, ninject, automapper set up.
 	- for Data - where browse to add \Data
 		- the name of the app.Data
 		- the name of the app.Models
+#### Adding in Web the WebApi
 4. Delete
 	- Scripts
 	- Views
@@ -68,7 +69,7 @@ Access Token is received after the post of type Bearer
 30. Installing Ninject.Web.WebApi.WebHost in Web.Api
 31. In NinjectWebCommon in RegisterServices - kernel.Bind<ITemplatesService>().To<TemplatesService>();
 32. Adiing in TemplatesService and ITemplatesService Add function
-33. After Exception in NinjectWebCommon updating all ninject
+33. After Exception in NinjectWebCommon updating all 4 ninject
 34. If exception when try to start -  Multiple object sets per type are not supported. The object sets 'ApplicationUsers' and 'Users' can both contain instances of type 'TemplateWebApi.Data.Models.ApplicationUser'.,
 	remove in ApplicationDbContext -  public System.Data.Entity.DbSet<TemplateWebApi.Data.Models.ApplicationUser> ApplicationUsers { get; set; } 
 35. Copy paste ninject register services -
@@ -88,6 +89,7 @@ Access Token is received after the post of type Bearer
 44. Register in Global.asax Automapper - 
 			var autoMapperConfig = new AutoMapperConfig();
             autoMapperConfig.Execute(Assembly.GetExecutingAssembly());
-45. TemplatesController implement with automapper	
+45. Making BaseController for automapper	
+46. TemplatesController implement with automapper	
 
 

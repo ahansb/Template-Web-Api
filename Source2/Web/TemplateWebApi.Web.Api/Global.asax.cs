@@ -1,13 +1,9 @@
 ﻿namespace TemplateWebApi.Web.Api
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
+    using Infrastructure.Mappings;
+    using System.Reflection;
     using System.Web.Http;
     using System.Web.Mvc;
-    using System.Web.Optimization;
-    using System.Web.Routing;
 
     public class WebApiApplication : System.Web.HttpApplication
     {
@@ -15,6 +11,10 @@
         {
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
+            DatabaseConfig.Initialize();
+
+            var autoMapperConfig = new AutoMapperConfig();
+            autoMapperConfig.Execute(Assembly.GetExecutingAssembly());
         }
     }
 }
