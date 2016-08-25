@@ -18,6 +18,7 @@
     using Providers;
     using Results;
     using Data.Models;
+
     [Authorize]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController

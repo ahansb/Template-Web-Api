@@ -1,11 +1,8 @@
 namespace TemplateWebApi.Data.Migrations
 {
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
-    public sealed class Configuration : DbMigrationsConfiguration<TemplateWebApi.Data.ApplicationDbContext>
+    public sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
         public Configuration()
         {
@@ -14,7 +11,7 @@ namespace TemplateWebApi.Data.Migrations
             AutomaticMigrationDataLossAllowed = true;
         }
 
-        protected override void Seed(TemplateWebApi.Data.ApplicationDbContext context)
+        protected override void Seed(ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

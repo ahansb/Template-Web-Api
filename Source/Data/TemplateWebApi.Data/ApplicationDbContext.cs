@@ -1,9 +1,9 @@
 ﻿namespace TemplateWebApi.Data
 {
+    using System.Data.Entity;
     using Contracts;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
-    using System.Data.Entity;
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
     {
         public ApplicationDbContext()

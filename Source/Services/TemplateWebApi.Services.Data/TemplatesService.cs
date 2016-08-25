@@ -1,13 +1,10 @@
 ﻿namespace TemplateWebApi.Services.Data
 {
-    using Contracts;
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+    using Contracts;
     using TemplateWebApi.Data.Common.Contracts;
     using TemplateWebApi.Data.Models;
+
     public class TemplatesService : ITemplatesService
     {
         private readonly IGenericRepository<Template> templates;

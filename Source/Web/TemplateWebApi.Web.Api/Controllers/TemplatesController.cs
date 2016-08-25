@@ -1,13 +1,15 @@
 ﻿namespace TemplateWebApi.Web.Api.Controllers
 {
-    using Microsoft.AspNet.Identity;
-    using Services.Data.Contracts;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Net;
     using System.Web.Http;
+
+    using Microsoft.AspNet.Identity;
+    using Services.Data.Contracts;
     using Data.Models;
-    using System.Collections.Generic;
     using Models.TemplateViewModels;
+
     [Authorize]
     public class TemplatesController : BaseController
     {

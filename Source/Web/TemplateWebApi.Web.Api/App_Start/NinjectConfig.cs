@@ -11,13 +11,12 @@ namespace TemplateWebApi.Web.Api.App_Start
     using Ninject;
     using Ninject.Extensions.Conventions;
     using Ninject.Web.Common;
-    using Services.Data.Contracts;
-    using Services.Data;
     using Data.Contracts;
     using Data;
     using Data.Common.Contracts;
     using Data.Common;
     using Common.Constants;
+
     public static class NinjectConfig
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();

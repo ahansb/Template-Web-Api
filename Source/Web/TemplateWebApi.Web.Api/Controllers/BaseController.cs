@@ -1,8 +1,8 @@
 ﻿namespace TemplateWebApi.Web.Api.Controllers
 {
+    using System.Web.Http;
     using AutoMapper;
     using Infrastructure.Mappings;
-    using System.Web.Http;
 
     public abstract class BaseController : ApiController
     {

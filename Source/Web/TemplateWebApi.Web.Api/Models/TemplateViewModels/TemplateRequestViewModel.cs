@@ -3,7 +3,7 @@
     using System.ComponentModel.DataAnnotations;
     using Data.Models;
     using Infrastructure.Mappings;
-    using System.ComponentModel.DataAnnotations.Schema;
+
     public class TemplateRequestViewModel : IMapTo<Template>
     {
         public int Id { get; set; }

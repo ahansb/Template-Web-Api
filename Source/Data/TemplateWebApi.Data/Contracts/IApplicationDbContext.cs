@@ -2,7 +2,7 @@
 {
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using TemplateWebApi.Data.Models;
+    using Models;
 
     public interface IApplicationDbContext
     {

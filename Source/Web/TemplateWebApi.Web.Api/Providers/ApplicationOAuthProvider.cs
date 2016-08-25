@@ -9,6 +9,7 @@
     using Microsoft.Owin.Security.Cookies;
     using Microsoft.Owin.Security.OAuth;
     using Data.Models;
+
     public class ApplicationOAuthProvider : OAuthAuthorizationServerProvider
     {
         private readonly string _publicClientId;
