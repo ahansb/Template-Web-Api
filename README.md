@@ -1,5 +1,5 @@
 # Template-Web-Api
-Template Web API with individual user accounts(Source) and without(Source2), ninject, automapper set up.
+Template Web API with individual user accounts and without, ninject, automapper set up.
 
 ### How to use it
 1. Open solution in VS
