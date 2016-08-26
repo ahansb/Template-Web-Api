@@ -1,7 +1,32 @@
 # Template-Web-Api
 Template Web API with individual user accounts(Source) and without(Source2), ninject, automapper set up.
 
-### Step-By-Step
+### How to use it
+1. Open solution in VS
+2. Replace in files - TemplateWebApi with the desired name
+3. Rename the solution and all the projects - replacing TemplateWebApi with the desired name
+4. Rename all default namespaces and assembly names in all projects properties - replacing TemplateWebApi with the desired name
+5. Close VS
+6. Rename all the projects folders in Windows - replacing TemplateWebApi with the desired name
+7. Start the solution in VS
+8. All the projects can not be found
+9. Remove the project one by one and Add Existing Project to the folders by navigating to the desired one
+10. Select Web.Api to be starting project
+11.  Delete all bin, obj and packages folders
+12. Build, Start, Done
+
+* Delete all bin, obj and packages folders - if something breaks, delete them again and restart the solution
+* If you do not follow the steps references will not be saved. They are:
+	- TemplateWebApi.Common - none
+	- TemplateWebApi.Data - TemplateWebApi.Data.Models
+	- TemplateWebApi.Data.Common - TemplateWebApi.Data
+	- TemplateWebApi.Data.Models - none
+	- TemplateWebApi.Services.Data - TemplateWebApi.Data.Common, TemplateWebApi.Data.Models
+	- TemplateWebApi.Web.Api - all
+	- TemplateWebApi.Web.Infrastructure - none
+ 
+
+### Step-By-Step implementation
 1. Blank Solution - the name of the app
 2. Folders - Data, Services, Web
 3. Generating Projects
